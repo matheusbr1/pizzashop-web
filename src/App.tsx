@@ -1,11 +1,11 @@
 import './global.css'
 
-import { Button } from './components/ui/button'
+import { RouterProvider } from 'react-router-dom'
+
+import { router } from './pages/routes'
 
 export function App() {
   return (
-    <div>
-      <Button>Enviar</Button>
-    </div>
+    <RouterProvider router={router} />
   )
 }
