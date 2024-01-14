@@ -27,6 +27,8 @@ export function SignIn() {
   function handleSignIn(data: SignInForm) {
     try {
       console.log(data)
+
+      toast.success('Enviamos um link de autenticação para seu e-mail.')
     } catch (error) {
       toast.error('Credenciais inválidas')
     }

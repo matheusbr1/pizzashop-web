@@ -2,7 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { Helmet } from "react-helmet-async"
 import { useForm } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router-dom'
-import { toast, Toaster } from 'sonner'
+import { toast } from 'sonner'
 import { z } from 'zod'
 
 import { Button } from "@/components/ui/button"
@@ -46,7 +46,7 @@ export function SignUp() {
 
   return <>
     <Helmet title="Login" />
-    <Toaster richColors />
+
     <div className="p-8" >
       <Button asChild className='absolute right-8 top-8' variant='ghost' >
         <Link to='/sign-in'>
