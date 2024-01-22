@@ -20,11 +20,13 @@ import { Skeleton } from "./ui/skeleton";
 export function AccountMenu() {
   const { data: profile, isLoading: isLoadingProfile } = useQuery({
     queryKey: ['profile'],
-    queryFn: getProfile
+    queryFn: getProfile,
+    staleTime: Infinity
   })
   const { data: managedRestaurant, isLoading: isLoadingManagedRestaurant } = useQuery({
-    queryKey: ['managed-Restaurant'],
-    queryFn: getManagedRestaurant
+    queryKey: ['managed-restaurant'],
+    queryFn: getManagedRestaurant,
+    staleTime: Infinity
   })
 
   return (
