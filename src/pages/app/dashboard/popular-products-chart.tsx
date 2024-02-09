@@ -6,14 +6,6 @@ import colors from 'tailwindcss/colors'
 import { getPropularProducts } from '@/api/get-popular-products';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
-const data = [
-  { product: 'Pepperoni', amount: 40 },
-  { product: 'Mussarela', amount: 20 },
-  { product: 'Marguerita', amount: 50 },
-  { product: '4 queijos', amount: 10 },
-  { product: 'Frango frito', amount: 5 },
-]
-
 const COLORS = [
   colors.sky[500],
   colors.amber[500],
