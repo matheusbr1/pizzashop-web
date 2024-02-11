@@ -1,15 +1,36 @@
 import { useQuery } from '@tanstack/react-query';
-import { CartesianGrid, Line, LineChart, ResponsiveContainer, XAxis, YAxis } from 'recharts'
+import { subDays } from 'date-fns'
+import { useMemo, useState } from 'react';
+import { DateRange } from 'react-day-picker';
+import { CartesianGrid, Label, Line, LineChart, ResponsiveContainer, XAxis, YAxis } from 'recharts'
 import colors from 'tailwindcss/colors'
 
 import { getDailyRevenueInPeriod } from '@/api/get-daily-revenue-in-period';
+import { DateRangePicker } from '@/components/date-range-picker';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 export function RevenueChart() {
-  const { data: dailyRevenueInPeriod } = useQuery({
-    queryKey: ['metrics', 'daily-revenue-in-period'],
-    queryFn: getDailyRevenueInPeriod
+  const [dateRange, setDateRange] = useState<DateRange | undefined>({
+    from: subDays(new Date(), 7),
+    to: new Date()
   })
+
+  const { data: dailyRevenueInPeriod } = useQuery({
+    queryKey: ['metrics', 'daily-revenue-in-period', dateRange],
+    queryFn: () => getDailyRevenueInPeriod({
+      from: dateRange?.from,
+      to: dateRange?.to
+    })
+  })
+
+  const chartData = useMemo(() => {
+    return dailyRevenueInPeriod?.map(chartItem => {
+      return {
+        date: chartItem.date,
+        receipt: chartItem.receipt / 100,
+      }
+    })
+  }, [dailyRevenueInPeriod])
 
   return (
     <Card className="col-span-6" >
@@ -18,11 +39,16 @@ export function RevenueChart() {
           <CardTitle className="text-base font-medium" >Receita no período</CardTitle>
           <CardDescription>Receita diária no período</CardDescription>
         </div>
+
+        <div className='flex items-center gap-3' >
+          <Label>Período</Label>
+          <DateRangePicker date={dateRange} onDateChange={setDateRange} />
+        </div>
       </CardHeader>
       <CardContent>
         {dailyRevenueInPeriod && (
           <ResponsiveContainer width='100%' height={240} >
-            <LineChart style={{ fontSize: 12 }} data={dailyRevenueInPeriod} >
+            <LineChart style={{ fontSize: 12 }} data={chartData} >
               <YAxis
                 width={88}
                 stroke='#8888'
