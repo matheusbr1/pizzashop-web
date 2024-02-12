@@ -60,7 +60,7 @@ export function Pagination({ pageIndex, perPage, totalCount, onPageChange }: Pro
             disabled={pages <= pageIndex + 1}
           >
             <ChevronsRight className="h-4 w-4" />
-            <span className="sr-only" >última página</span>
+            <span className="sr-only" >Última página</span>
           </Button>
         </div>
       </div>
