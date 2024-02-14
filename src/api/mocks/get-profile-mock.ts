@@ -7,7 +7,7 @@ export const GetProfileMock = http
     never,
     never,
     GetProfileResponse
-  >('/metrics/month-receipt', async () => {
+  >('/me', async () => {
     return HttpResponse.json({
       id: 'custom-user-id',
       name: 'Jhon Doe',
