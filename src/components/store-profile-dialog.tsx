@@ -82,7 +82,7 @@ export function StoreProfileDialog() {
       if (!data.name || !data.description) {
         throw new Error('Missing data to update profile')
       }
-     
+
       await updateProfileFn({
         description: data.description,
         name: data.name,
