@@ -41,7 +41,7 @@ export function SignIn() {
 
       toast.success('Enviamos um link de autenticação para seu e-mail.')
     } catch (error) {
-      toast.error('Credenciais inválidas')
+      toast.error('Credenciais inválidas.')
     }
   }
 
