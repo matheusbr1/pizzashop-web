@@ -4,9 +4,9 @@ import { RegisterRestauranteBody } from '../register-restaurant'
 
 export const registerRestaurantsMock = http
   .post<never, RegisterRestauranteBody>('/restaurants', async ({ request }) => {
-    const { email } = await request.json()
+    const { restaurantName } = await request.json()
 
-    if (email === 'Pizza Shop') {
+    if (restaurantName === 'Pizza Shop') {
       return new HttpResponse(null, {
         status: 201,
       })
