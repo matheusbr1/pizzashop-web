@@ -24,7 +24,7 @@ test('sign up with error ', async ({ page }) => {
     waitUntil: 'networkidle'
   })
 
-  await page.getByLabel('Nome do estabelecimento').fill('Pizza Shop')
+  await page.getByLabel('Nome do estabelecimento').fill('Restaurant Name')
   await page.getByLabel('Seu nome').fill('John Doe')
   await page.getByLabel('Seu e-mail').fill('johndoe@example.com')
   await page.getByLabel('Seu celular').fill('123123123123')
@@ -33,7 +33,7 @@ test('sign up with error ', async ({ page }) => {
 
   const toast = page.getByText('Erro ao cadastrar restaurante.')
 
-  expect(toast).toBeVisible()
+  await expect(toast).toBeVisible()
 })
 
 test('navigate to sign in page ', async ({ page }) => {
